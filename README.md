@@ -4,6 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ISSUE: I'm learning Angular. So, I'm sure I might have got my basics wrong in this sample project. The issue is that - there are two components list-items and list-item. As the name suggests, list-items shows the list of items; and list-item is to add a new list item. When I add a list item on list-item and navigate back to list-items, the shared service's list of items has duplicate items. To put it in simple terms, when I add one list item, I see mulitiple duplicate items in the list-items.
 
+Fixed it by adding unsubscribe.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
