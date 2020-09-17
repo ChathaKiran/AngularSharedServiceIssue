@@ -8,17 +8,19 @@ import { AppService } from '../app.service';
 })
 export class ListItemsComponent implements OnInit {
   _localListItems: string[];
+  listItemsSubscription: any;
+  listItemSubscription: any;
 
   constructor(private appService: AppService){
 
   }
 
   ngOnInit(){
-    this.appService.listItemsObservable.subscribe(_listItems => {
+    this.listItemsSubscription = this.appService.listItemsObservable.subscribe(_listItems => {
       this._localListItems = _listItems;
     });
 
-    this.appService.listItemObservable.subscribe(_listItem => {
+    this.listItemSubscription = this.appService.listItemObservable.subscribe(_listItem => {
       if (_listItem != undefined) {
         var allItems = this._localListItems.concat(_listItem);
         this.appService.updateListItems(allItems);
@@ -26,4 +28,8 @@ export class ListItemsComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.listItemsSubscription.unsubscribe();
+    this.listItemSubscription.unsubscribe();
+  }  
 }
